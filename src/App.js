@@ -5,6 +5,7 @@ import ArticleList from './components/article-list'
 import ArticlesChart from './components/articles-chart'
 import UserForm from './components/user-form'
 import Select from 'react-select'
+import Calendar from './components/calendar.js'
 
 class App extends Component {
   state = {
@@ -23,6 +24,7 @@ class App extends Component {
           onChange={this.handleSelectionChange}
           isMulti
         />
+        <Calendar />
         <ArticleList articles={articles} ref={this.setArticleListRef} />
         <ArticlesChart articles={articles} />
       </div>
