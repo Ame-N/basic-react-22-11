@@ -2,15 +2,20 @@ import React from 'react'
 import expand from '../decorators/expand'
 
 function CommentList(props) {
-  const { comments, isOpen } = props
+  const { comments, isOpen, expand } = props
 
-  return <ul>{wrapComments(isOpen, comments)}</ul>
+  return (
+    <div style={{ marginTop: '10px' }}>
+      <b>Comments</b> <button onClick={expand}>{isOpen ? 'hide' : 'show'}</button>
+      {getComments(isOpen, comments)}
+    </div>
+  )
 }
 
-function wrapComments(isOpen, data) {
+function getComments(isOpen, data) {
   if (!isOpen) return null
 
-  return data.map((comment) => {
+  let commentItems = data.map((comment) => {
     return (
       <li key={comment.id}>
         <b>{comment.user}</b>
@@ -18,6 +23,8 @@ function wrapComments(isOpen, data) {
       </li>
     )
   })
+
+  return <ul>{commentItems}</ul>
 }
 
 export default expand(CommentList)

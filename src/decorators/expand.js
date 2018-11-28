@@ -15,11 +15,6 @@ export default (OriginalComponent) =>
 
     render() {
       const { isOpen } = this.state
-      return (
-        <div>
-          <button onClick={this.toggleExpand}>{isOpen ? 'hide' : 'show'}</button>
-          <OriginalComponent isOpen={isOpen} {...this.props} />
-        </div>
-      )
+      return <OriginalComponent {...this.props} isOpen={isOpen} expand={this.toggleExpand} />
     }
   }

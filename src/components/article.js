@@ -18,7 +18,6 @@ function getBody({ isOpen, article }) {
   return (
     <section>
       <div>{article.text}</div>
-      <h4>Comments</h4>
       <CommentList comments={article.comments} />
     </section>
   )
