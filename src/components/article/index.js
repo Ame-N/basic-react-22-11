@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import CommentList from '../comment-list'
 import { connect } from 'react-redux'
 import { deleteArticle } from '../../ac'
+import { createArticleSelector } from '../../selectors'
 
 class Article extends Component {
   render() {
@@ -38,6 +39,7 @@ class Article extends Component {
 }
 
 Article.propTypes = {
+  id: PropTypes.string.isRequired,
   article: PropTypes.shape({
     title: PropTypes.string.isRequired,
     text: PropTypes.string
@@ -46,7 +48,15 @@ Article.propTypes = {
   toggleOpen: PropTypes.func
 }
 
+const createMapStateToProps = () => {
+  const articleSelector = createArticleSelector()
+
+  return (state, props) => ({
+    comment: articleSelector(state, props)
+  })
+}
+
 export default connect(
-  null,
+  createMapStateToProps,
   { deleteArticle }
 )(Article)

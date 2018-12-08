@@ -27,7 +27,7 @@ export const filtratedArticlesSelector = createSelector(
     console.log('---', 'selector')
     const { from, to } = dateRange
 
-    return articles.filter((article) => {
+    return Object.values(articles).filter((article) => {
       const published = Date.parse(article.date)
       return (
         (!selected.length || selected.find((selected) => selected.value === article.id)) &&
@@ -36,3 +36,12 @@ export const filtratedArticlesSelector = createSelector(
     })
   }
 )
+
+export const createArticleSelector = () =>
+  createSelector(
+    articlesSelector,
+    idSelector,
+    (articles, id) => {
+      return articles[id]
+    }
+  )

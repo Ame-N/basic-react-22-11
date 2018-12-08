@@ -7,7 +7,7 @@ import { articlesSelector, selectedArticlesSelector } from '../../selectors'
 
 class SelectFilter extends Component {
   static propTypes = {
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.object.isRequired
   }
 
   handleChange = (selected) => {
@@ -15,7 +15,7 @@ class SelectFilter extends Component {
   }
 
   get options() {
-    return this.props.articles.map((article) => ({
+    return Object.values(this.props.articles).map((article) => ({
       label: article.title,
       value: article.id
     }))
