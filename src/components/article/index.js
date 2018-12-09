@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CommentList from '../comment-list'
+import CommentForm from '../comment-form'
 import { connect } from 'react-redux'
 import { deleteArticle } from '../../ac'
 import { createArticleSelector } from '../../selectors'
@@ -33,6 +34,7 @@ class Article extends Component {
       <section className="test__article--body">
         {article.text}
         <CommentList comments={article.comments} />
+        <CommentForm articleId={article.id} />
       </section>
     )
   }
